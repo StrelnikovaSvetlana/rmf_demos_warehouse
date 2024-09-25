@@ -4,6 +4,7 @@
   <arg name="use_sim_time" default="true"/>
   <arg name="failover_mode" default="false"/>
   <arg name="gazebo_version" default='8'/>
+  <arg name="moveit" default="false"/>
 
   <!-- Common launch -->
   <include file="$(find-pkg-share rmf_demos)/office.launch.xml">
@@ -16,5 +17,18 @@
     <arg name="map_name" value="office" />
     <arg name="gazebo_version" value="$(var gazebo_version)" />
   </include>
+
+  <!-- MoveIt launch -->
+  <group if="$(var moveit)">
+    <include file="$(find-pkg-share rmf_demos_gz)/moveit.launch.xml">
+      <arg name="map_name" value="office" />
+      <arg name="panda_x" value="20.2" />
+      <arg name="panda_y" value="-7.19" />
+      <arg name="panda_z" value="0.8" />
+      <arg name="coke_x" value="20.2" />
+      <arg name="coke_y" value="-7.69" />
+      <arg name="coke_z" value="0.8" />
+    </include>
+  </group>
 
 </launch>

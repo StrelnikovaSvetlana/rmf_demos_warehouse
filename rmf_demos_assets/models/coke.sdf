@@ -1,0 +1,9 @@
+<sdf version="1.6">
+    <include>
+        <name>coke_hardware</name>
+        <static>false</static>
+        <uri>
+            https://fuel.gazebosim.org/1.0/OpenRobotics/models/Coke
+        </uri>
+    </include>
+</sdf>

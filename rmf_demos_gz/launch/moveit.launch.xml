@@ -1,0 +1,89 @@
+<?xml version='1.0' ?>
+
+<launch>
+  <arg name="map_package" default="rmf_demos_maps" description="Name of the map package" />
+  <arg name="map_name" description="Name of the rmf_demos map to simulate" />
+  <arg name="use_crowdsim" default='0'/>
+  <arg name="gazebo_version" default='8'/>
+
+  <arg name="world" default="default.sdf" description="Name or filepath of the Gazebo world to load."/>
+  <arg name="name" default="panda" description="Name of the robot." />
+  <arg name="prefix" default="$(var name)_" description="Prefix for all robot entities. If modified, then joint names in the configuration of controllers must also be updated." />
+  <arg name="collision_arm" default="true" description="Flag to enable collision geometry for the arm." />
+  <arg name="collision_gripper" default="true" description="Flag to enable collision geometry for the gripper." />
+  <arg name="ros2_control_command_interface" default="position" description="The output control command interface provided by ros2_control ('position', 'velocity', 'effort' or certain combinations 'position,velocity')." />
+  <arg name="gazebo_preserve_fixed_joint" default="false" description="Flag to preserve fixed joints and prevent lumping when generating SDF for Gazebo." />
+  <arg name="rviz_config" default="$(find-pkg-share panda_moveit_config)/rviz/moveit.rviz" description="Path to configuration for RViz2." />
+  <arg name="use_sim_time" default="true" description="If true, use simulated clock." />
+  <arg name="gz_verbosity" default="3" description="Verbosity level for Gazebo (0~4)." />
+  <arg name="log_level" default="warn" description="The level of logging that is applied to all ROS 2 nodes launched by this script." />
+
+  <!-- Panda arm args -->
+  <arg name="panda_x" default="0" description="X component of arm spawning position in meters" />
+  <arg name="panda_y" default="0" description="Y component of arm spawning position in meters" />
+  <arg name="panda_z" default="0" description="Z component of arm spawning position in meters" />
+  <arg name="panda_R" default="0" description="Roll component of arm spawning position in meters" />
+  <arg name="panda_P" default="0" description="Pitch component of arm spawning position in meters" />
+  <arg name="panda_Y" default="0" description="Yaw component of arm spawning position in meters" />
+
+  <arg name="robot_description" default="$(find-pkg-share panda_description)/urdf/panda.urdf.xacro" description="Path to robot URDF"/>
+  <arg name="robot_description_semantic" default="$(find-pkg-share panda_moveit_config)/srdf/panda.srdf.xacro" description="Path to robot SRDF"/>
+
+  <!-- Coke can args -->
+  <arg name="coke_x" default="0" description="X component of coke can spawning position in meters" />
+  <arg name="coke_y" default="0" description="Y component of coke can spawning position in meters" />
+  <arg name="coke_z" default="0" description="Z component of coke can spawning position in meters" />
+
+  <let name="world_path" value="$(find-pkg-share $(var map_package))/maps/$(var map_name)/$(var map_name).world" />
+  <let name="model_path" value="$(find-pkg-share $(var map_package))/maps/$(var map_name)/models:$(find-pkg-share $(var map_package))/maps/$(var map_name)/models:$(find-pkg-share rmf_demos_assets)/models:$(find-pkg-prefix panda_description)/share:$(env HOME)/.gazebo/models" />
+  <let name="plugin_path" value="$(find-pkg-prefix rmf_robot_sim_gz_plugins)/lib/rmf_robot_sim_gz_plugins:$(find-pkg-prefix rmf_building_sim_gz_plugins)/lib/rmf_building_sim_gz_plugins" />
+
+  <set_env name="GZ_SIM_RESOURCE_PATH" value="$(var model_path):$(var world_path)"/>
+  <set_env name="GZ_SIM_SYSTEM_PLUGIN_PATH" value="$(var plugin_path)"/>
+  <set_env name="GZ_GUI_PLUGIN_PATH" value="$(var plugin_path)"/>
+
+  <!-- Launch move group of MoveIt 2 -->
+  <include file="$(find-pkg-share panda_moveit_config)/launch/move_group.launch.py">
+    <arg name="name:=" value="$(var name)" />
+    <arg name="prefix:=" value="$(var prefix)" />
+    <arg name="collision_arm" value="$(var collision_arm)" />
+    <arg name="collision_gripper" value="$(var collision_gripper)" />
+    <arg name="ros2_control" value="true" />
+    <arg name="ros2_control_plugin" value="gz" />
+    <arg name="ros2_control_interface" value="$(var ros2_control_command_interface)" />
+    <arg name="gazebo_preserve_fixed_joint" value="$(var gazebo_preserve_fixed_joint)" />
+    <arg name="rviz_config" value="$(var rviz_config)" />
+    <arg name="use_sim_time" value="$(var use_sim_time)" />
+    <arg name="log_level" value="$(var log_level)" />
+  </include>
+
+  <!-- Spawn panda arm -->
+  <node pkg="ros_gz_sim"
+        exec="create"
+        args="-string $(command 'xacro $(find-pkg-share panda_description)/urdf/panda.urdf.xacro name:=$(var name) prefix:=$(var prefix) collision_arm:=$(var collision_arm) collision_gripper:=$(var collision_gripper) ros2_control:=true ros2_control_plugin:=gz ros2_control_command_interface:=$(var ros2_control_command_interface) gazebo_preserve_fixed_joint:=$(var gazebo_preserve_fixed_joint)') -x $(var panda_x) -y $(var panda_y) -z $(var panda_z) -R $(var panda_R) -P $(var panda_P) -Y $(var panda_Y) --ros-args --log-level $(var log_level)"
+        output="log">
+
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+  <!-- Dispenser node to control moveit arm -->
+  <node pkg="rmf_robot_sim_gz_plugins"
+        exec="moveit_dispenser"
+        output="log">
+
+    <param name="robot_description" value="$(command '$(find-exec xacro) $(var robot_description) name:=panda')"/>
+    <param name="robot_description_semantic" value="$(command '$(find-exec xacro) $(var robot_description_semantic) name:=panda')"/>
+    <param name="use_sim_time" value="$(var use_sim_time)" />
+  </node>
+
+  <!-- Spawn a coke can in hardware_2 -->
+  <node pkg="ros_gz_sim"
+        exec="create"
+        args="-file $(find-pkg-share rmf_demos_assets)/models/coke.sdf -x $(var coke_x) -y $(var coke_y) -z $(var coke_z)"
+        output="log">
+
+    <param name="use_sim_time" value="$(var use_sim_time)"/>
+  </node>
+
+
+</launch>
