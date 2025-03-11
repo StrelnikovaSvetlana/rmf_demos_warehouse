@@ -16,7 +16,7 @@ graphs:
 levels:
   L1:
     drawing:
-      filename: hello-world.png
+      filename: warehouse.png
     elevation: 0
     flattened_x_offset: 0
     flattened_y_offset: 0
@@ -33,4 +33,4 @@ levels:
       - [845.043, 546.848, 0, RightLow]
       - [105.024, 548.255, 0, LeftLow]
 lifts: {}
-name: hello-world
+name: warehouse
