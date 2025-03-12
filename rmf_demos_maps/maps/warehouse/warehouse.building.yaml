@@ -21,6 +21,9 @@ levels:
     elevation: 0
     flattened_x_offset: 0
     flattened_y_offset: 0
+    floors:
+      - parameters: {ceiling_scale: [3, 1], ceiling_texture: [1, blue_linoleum_high_contrast], indoor: [2, 0], texture_name: [1, blue_linoleum_high_contrast], texture_rotation: [3, 0], texture_scale: [3, 1]}
+        vertices: [0, 1, 2, 3]
     lanes:
       - [0, 1, {bidirectional: [4, false], demo_mock_floor_name: [1, ""], demo_mock_lift_name: [1, ""], graph_idx: [2, 0], orientation: [1, ""]}]
       - [1, 2, {bidirectional: [4, false], demo_mock_floor_name: [1, ""], demo_mock_lift_name: [1, ""], graph_idx: [2, 0], orientation: [1, ""]}]
