@@ -31,10 +31,12 @@ levels:
       - [3, 0, {bidirectional: [4, false], demo_mock_floor_name: [1, ""], demo_mock_lift_name: [1, ""], graph_idx: [2, 0], orientation: [1, ""]}]
     layers:
       {}
+    measurements:
+      - [0, 1, {distance: [3, 10]}]
     vertices:
       - [106.431, 89.611, 0, tinyRobot1_charger, {is_charger: [4, true], is_holding_point: [4, true], is_parking_spot: [4, true], spawn_robot_name: [1, tinyRobot1], spawn_robot_type: [1, TinyRobot]}]
       - [845.043, 91.018, 0, RightHigh]
       - [845.043, 546.848, 0, RightLow]
-      - [105.024, 548.255, 0, tinyRobot2_charger, {is_charger: [4, true], is_holding_point: [4, true], is_parking_spot: [4, true], spawn_robot_name: [1, tinyRobot2], spawn_robot_type: [1, TinyRobot]}]
+      - [105.024, 548.255, 0, tinyRobot2_charger, {is_charger: [4, true], is_holding_point: [4, true], is_parking_spot: [4, true]}]
 lifts: {}
 name: warehouse
