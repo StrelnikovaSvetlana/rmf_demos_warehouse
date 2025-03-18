@@ -45,6 +45,16 @@ levels:
     models:
       - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenser1, static: true, x: 241.655, y: 504.99599999999998, yaw: 1.5708, z: 0}
       - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestorTR02, static: true, x: 844.32899999999995, y: 593.125, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenser2, static: true, x: 336.46600000000001, y: 507.29899999999998, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenser3, static: true, x: 434.50900000000001, y: 508.78399999999999, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenser4, static: true, x: 550.37800000000004, y: 507.29899999999998, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenser5, static: true, x: 672.93200000000002, y: 508.78399999999999, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportDispenser, name: dispenserTR01, static: true, x: 845.99300000000005, y: 57.192, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor1, static: true, x: 249.56399999999999, y: 126.268, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor2, static: true, x: 338.69400000000002, y: 126.268, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor3, static: true, x: 435.995, y: 128.49600000000001, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor4, static: true, x: 550.37800000000004, y: 128.49600000000001, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor5, static: true, x: 666.24699999999996, y: 128.49600000000001, yaw: 1.5708, z: 0}
     vertices:
       - [15.525, 19.975000000000001, 0, wall_upper_left]
       - [978.84100000000001, 21.027000000000001, 0, wall_upper_right]
