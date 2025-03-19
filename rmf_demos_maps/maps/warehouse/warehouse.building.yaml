@@ -55,7 +55,12 @@ levels:
       - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor3, static: true, x: 435.995, y: 128.49600000000001, yaw: 1.5708, z: 0}
       - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor4, static: true, x: 550.37800000000004, y: 128.49600000000001, yaw: 1.5708, z: 0}
       - {dispensable: false, model_name: OpenRobotics/TeleportIngestor, name: ingestor5, static: true, x: 666.24699999999996, y: 128.49600000000001, yaw: 1.5708, z: 0}
-      - {dispensable: true, model_name: OpenRobotics/Coke, name: coke, static: false, x: 241.50200000000001, y: 504.33300000000003, yaw: 1.5708, z: 0}
+      - {dispensable: true, model_name: OpenRobotics/Coke, name: coke1, static: false, x: 241.50200000000001, y: 504.33300000000003, yaw: 1.5708, z: 0}
+      - {dispensable: true, model_name: OpenRobotics/Coke, name: coke2, static: false, x: 335.488, y: 506.11000000000001, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/Coke, name: coke3, static: true, x: 433.96600000000001, y: 507.94200000000001, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/Coke, name: coke4, static: true, x: 550.76499999999999, y: 506.56799999999998, yaw: 1.5708, z: 0}
+      - {dispensable: false, model_name: OpenRobotics/Coke, name: coke5, static: true, x: 672.14400000000001, y: 507.94200000000001, yaw: 1.5708, z: 0}
+      - {dispensable: true, model_name: OpenRobotics/Coke, name: cokeTR01, static: false, x: 846.38999999999999, y: 57.156999999999996, yaw: 1.5708, z: 0}
     vertices:
       - [15.525, 19.975000000000001, 0, wall_upper_left]
       - [978.84100000000001, 21.027000000000001, 0, wall_upper_right]
