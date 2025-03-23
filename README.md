@@ -144,6 +144,42 @@ The office demo can be run in secure mode using ROS 2 DDS-Security integration. 
 
 ---
 
+### Warehouse World
+Currently in progress. Warehouse world is based on the office world (modified copy of the office demo). 
+There is a simple warehouse model with 5 racks with a capacity of 8 SKUs (stock keeping units) each.
+Inbound pallet drop-off point is a dispenser name: dispenserTR01
+Outbound pallet pickup point is an ingestor name:ingestorTR02
+Each rack has an inbound ingestor and an outbound dispenser with rack's index (like, ingestor1/dispenser1)
+and there are cans of cokes spawning at each rack's dispenser.
+
+```bash
+source ~/rmf_demos/install/setup.bash
+ros2 launch rmf_demos_gz warehouse.launch.xml
+
+# Or, run with ignition simulator
+ros2 launch rmf_demos_gz warehouse.launch.xml
+```
+
+How to perform **Loop** task: 
+
+You can request the robot to move around the warehouse square counterclockwise through the following:
+```bash
+ros2 run rmf_demos_tasks dispatch_patrol -F tinyRobot -R tinyRobot1 -p B2 A2 A1 tinyRobot1_charger -n 3 --use_sim_time
+```
+
+How to perform **Delivery** task: 
+
+You can request the robot to deliver a can of coke from `dispenser1` to `ingestorTR02` through the following:
+```bash
+ros2 run rmf_demos_tasks dispatch_delivery -F tinyRobot -R tinyRobot1 -p shelf1_out -pp coke,1 -ph dispenser1 -d A2 -dh ingestorTR02 -dp coke,1 --use_sim_time
+```
+To set a Marker on rviz2 map that can store calculation results
+
+You launch the map as usual, then in a separate terminal — initialize the environment (just like before running ROS 2),
+run python3 warehouse.py (it's located in [rmf_demos_tasks](rmf_demos_tasks/rmf_demos_tasks), and then in RViz,
+you need to add a Marker with the topic /balloon on the map.
+---
+
 ### Airport Terminal World
 
 This demo world shows robot interaction on a much larger map, with a lot more lanes, destinations, robots and possible interactions between robots from different fleets, robots and infrastructure, as well as robots and users. In the illustrations below, from top to bottom we have how the world looks like in `traffic_editor`, the schedule visualizer in `rviz`, and the full simulation in `gazebo`,
