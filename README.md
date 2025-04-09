@@ -160,6 +160,8 @@ ros2 launch rmf_demos_gz warehouse.launch.xml
 ros2 launch rmf_demos_gz warehouse.launch.xml
 ```
 
+
+Version for 1x1 map. For 5x5 map commands need to be replaced with actual robot names
 How to perform **Loop** task: 
 
 You can request the robot to move around the warehouse square counterclockwise through the following:

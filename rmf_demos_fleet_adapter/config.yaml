@@ -33,10 +33,34 @@ rmf_fleet:
   finishing_request: "park" # [park, charge, nothing]
   robots:
     # Here the user is expected to append the configuration for each robot in the fleet.
-    tinyRobot1:
-      charger: "tinyRobot1_charger"
-    tinyRobot2:
-      charger: "tinyRobot2_charger"
+#    tinyRobot1:
+#      charger: "tinyRobot1_charger"
+#    tinyRobot2:
+#      charger: "tinyRobot2_charger"
+    tinyRobotK1:
+      charger: "K1_spawn"
+    tinyRobotI1:
+      charger: "I1_spawn"
+    tinyRobotG1:
+      charger: "G1_spawn"
+    tinyRobotE1:
+      charger: "E1_spawn"
+    tinyRobotA1:
+      charger: "A1_spawn"
+    tinyRobotC1:
+      charger: "C1_spawn"
+    tinyRobotB6:
+      charger: "B6_spawn"
+    tinyRobotD6:
+      charger: "D6_spawn"
+    tinyRobotF6:
+      charger: "F6_spawn"
+    tinyRobotH6:
+      charger: "H6_spawn"
+    tinyRobotJ6:
+      charger: "J6_spawn"
+    tinyRobotL6:
+      charger: "L6_spawn"
 
 fleet_manager:
   ip: "127.0.0.1"
